@@ -18,8 +18,3 @@
   copy:
     src: inventory_vars.json
     dest: /root/inventory_vars.json
-
-- name: Create tower cli
-  template:
-    src: tower_cli.j2
-    dest: /tmp/tower_cli.cfg

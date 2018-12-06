@@ -5,7 +5,8 @@
     description: "{{proj_name}}"
     organization: "test"
     state: present
-    tower_config_file: "/tmp/tower_cli.cfg"
+    scm_type: git
+    scm_url: "{{path_to_scm_inventory}}"
 
 - name: Machine Credentail to connect to workstation using openstack.pub
   tower_credential:
