@@ -1,6 +1,5 @@
 ---
 # vars file for db-tier
-payload: postgresql-server
 postgresql_databases:
   - name: example_db
 postgresql_users:

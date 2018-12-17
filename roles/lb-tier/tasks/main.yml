@@ -8,9 +8,9 @@
 - name: enable {{ payload }} at boot
   service:
    name: "{{ payload }}"
-   state: started
+   enabled: yes
 
-- name: configure "{{ payload }}"
+- name: configure haproxy to load balance over app servers
   template:
    src: haproxy.cfg.j2
    dest: /etc/haproxy/haproxy.cfg

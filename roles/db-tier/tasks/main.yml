@@ -1,26 +1,26 @@
 ---
-# tasks file for db-tier
-- name: install "{{payload}}"
-  yum:
-    name: "{{payload}}"
-    state: latest
-  register: dbinstalled
+# Variable configuration.
+- include: variables.yml
+  static: no
 
-- name: enable "{{payload}}" at boot
+# Setup/install tasks.
+- include: setup-RedHat.yml
+  when: ansible_os_family == 'RedHat'
+  static: no
+
+- include: setup-Debian.yml
+  when: ansible_os_family == 'Debian'
+  static: no
+
+- include: initialize.yml
+- include: configure.yml
+
+- name: Ensure PostgreSQL is started and enabled on boot.
   service:
-    name: postgresql
+    name: "{{ postgresql_daemon }}"
+    state: started
     enabled: yes
 
-
- # only run the next 2 tasks once!
-- name: initilize postgres
-  command: postgresql-setup initdb
-  when: dbinstalled.changed
-- name: initilize postgres some more
-  command: chkconfig postgresql on
-  when: dbinstalled.changed
-
-- name: start postgres
-  service:
-   name: postgresql.service
-   state: started
+# Configure PostgreSQL.
+- include: databases.yml
+- include: users.yml
