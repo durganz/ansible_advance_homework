@@ -1,8 +1,8 @@
 [bastion_tower]
-bastion.bbf0.example.opentlc.com
+bastion.051a.example.opentlc.com
 
 [workstation]
-workstation-9632.rhpds.opentlc.com
+workstation-64f9.rhpds.opentlc.com
 
 [all:vars]
 ansible_user=durgaprasad.mv-accenture.com
